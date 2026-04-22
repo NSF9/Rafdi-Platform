@@ -8,7 +8,8 @@ DB_HOST = os.getenv("MYSQLHOST")
 DB_PORT = os.getenv("MYSQLPORT") or "3306"  
 DB_NAME = os.getenv("MYSQLDATABASE")
 
-DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+DATABASE_URL = os.getenv("MYSQL_URL") or os.getenv("DATABASE_URL")
+engine = create_engine(DATABASE_URL)
 
 engine = create_engine(
     DATABASE_URL,
