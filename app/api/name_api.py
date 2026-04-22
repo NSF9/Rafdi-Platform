@@ -21,7 +21,7 @@ def add_name(req: NameRequest):
         service.add_name(req.name)
 
         db.close()
-        return {"message": "added"}
+        return {"Hello": req.name}
 
     except Exception as e:
         return {"error": str(e)}
