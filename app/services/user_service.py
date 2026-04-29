@@ -30,11 +30,6 @@ class UserService:
             raise ValueError(str(e))
     
     def _hash_password(self, password: str) -> str:
-        import base64
-        import os
-        from cryptography.hazmat.primitives import hashes
-        from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-
         salt = os.urandom(16)
         kdf  = PBKDF2HMAC(
             algorithm  = hashes.SHA256(),
