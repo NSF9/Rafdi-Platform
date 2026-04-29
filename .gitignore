@@ -8,3 +8,5 @@ opencode.json
 .claude/
 .kiro/
 skills-lock.json
+frontend/node_modules/
+frontend/dist/

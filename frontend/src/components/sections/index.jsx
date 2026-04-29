@@ -1,0 +1,5 @@
+export { default as HeroSection } from './HeroSection'
+export { default as ValueSection } from './ValueSection'
+export { default as WorkflowSection } from './WorkflowSection'
+export { default as RolesSection } from './RolesSection'
+export { default as CTASection } from './CTASection'
