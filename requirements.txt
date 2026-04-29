@@ -3,3 +3,4 @@ uvicorn
 sqlalchemy>=2.0
 pymysql
 cryptography
+pydantic[email]
