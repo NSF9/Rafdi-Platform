@@ -19,20 +19,24 @@ const roleActions = {
     { label: 'مستودعات المالك', to: appRoutes.owner.warehouses },
     { label: 'حجوزات المالك', to: appRoutes.owner.bookings },
   ],
+  renter: [
+    { label: 'استعراض المستودعات', to: appRoutes.renter.warehouses },
+    { label: 'حجوزات المستأجر', to: appRoutes.renter.bookings },
+  ],
 }
 
 export default function OverviewPage() {
   const { eyebrow, title, text, summaryBar, sharedStats, sections } = dashboardShowcaseContent
   const renterPreviewCards = [
     {
-      label: 'المستأجر',
-      value: 'قريباً',
-      note: 'تجربة البحث والحجز للمستأجر ستتم إضافتها في المهمة التالية دون إظهار صفحات غير مكتملة الآن.',
+      label: 'رحلة المستأجر',
+      value: 'جاهزة للعرض',
+      note: 'يمكن الآن استعراض المستودعات والانتقال إلى التفاصيل ثم إتمام الحجز ومراجعة الحجوزات.',
     },
     {
-      label: 'المسار الحالي',
-      value: 'مشرف + مالك',
-      note: 'العرض الحالي يربط مباشرة إلى الواجهات المنفذة التي يحتاجها العرض التوضيحي.',
+      label: 'نقطة البداية',
+      value: 'المستودعات',
+      note: 'ابدأ من قائمة المستودعات ثم انتقل إلى صفحة التفاصيل أو سجل الحجوزات مباشرة.',
     },
   ]
 
@@ -165,34 +169,37 @@ export default function OverviewPage() {
               <h2 className="mt-3 text-2xl font-bold text-rafdi-dark">{sections.renter.title}</h2>
               <p className="mt-3 max-w-3xl text-slate-600">{sections.renter.description}</p>
             </div>
-            <StatusBadge tone={statusTones.outline}>قريباً</StatusBadge>
+             <StatusBadge tone={statusTones.info}>جاهز</StatusBadge>
           </div>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {sections.renter.highlights.map((item) => (
-              <StatCard key={item.label} label={item.label} value={item.value} />
-            ))}
-          </div>
-
-          <div className="mt-6 rounded-[2rem] border border-dashed border-slate-200 bg-slate-50 p-5">
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <h3 className="text-lg font-bold text-rafdi-dark">{sections.renter.paymentStatus.title}</h3>
-                <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-600">{sections.renter.paymentStatus.detail}</p>
+            <div className="mt-6 rounded-[2rem] border border-slate-100 bg-slate-50 p-5">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h3 className="text-lg font-bold text-rafdi-dark">المسار المنفذ للمستأجر</h3>
+                  <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-600">
+                    شاشة الاستعراض والتفاصيل والحجوزات والدفع أصبحت متاحة داخل العرض ويمكن الوصول لها مباشرة من الأزرار أدناه.
+                  </p>
+                </div>
+                <StatusBadge tone={statusTones.success}>مكتمل</StatusBadge>
               </div>
-              <StatusBadge tone={getStatusTone(statusValues.paid)}>{sections.renter.paymentStatus.status}</StatusBadge>
-            </div>
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
-              {renterPreviewCards.map((item) => (
+              <div className="mt-5 grid gap-4 md:grid-cols-2">
+                {renterPreviewCards.map((item) => (
                 <article key={item.label} className="rounded-[1.5rem] bg-white p-4 shadow-soft">
                   <p className="text-sm text-slate-500">{item.label}</p>
                   <p className="mt-2 text-lg font-bold text-rafdi-dark">{item.value}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-500">{item.note}</p>
-                </article>
-              ))}
+                  </article>
+                ))}
+              </div>
+              <div className="mt-6 flex flex-wrap gap-3">
+                {roleActions.renter.map((action) => (
+                  <Button key={action.to} as={Link} to={action.to} variant={action.to === appRoutes.renter.warehouses ? 'primary' : 'secondary'} className="rounded-[1.2rem] px-5 py-3">
+                    {action.label}
+                  </Button>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
       </div>
     </AppShell>
   )

@@ -82,7 +82,7 @@ function DemoQuickAccess() {
   return (
     <div className="pt-10 text-center">
       <p className="text-[0.68rem] font-semibold tracking-[0.38em] text-slate-400">DEMO QUICK ACCESS</p>
-      <div className="mt-6 flex items-center justify-center gap-3">
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
         <Button as={Link} to={appRoutes.admin.dashboard} variant="secondary" className="h-11 min-w-0 rounded-[1.1rem] px-4 text-xs">
           مشرف
         </Button>
@@ -91,6 +91,9 @@ function DemoQuickAccess() {
         </Button>
         <Button as={Link} to={appRoutes.owner.warehouses} variant="secondary" className="h-11 min-w-0 rounded-[1.1rem] px-4 text-xs">
           مالك
+        </Button>
+        <Button as={Link} to={appRoutes.renter.warehouses} variant="secondary" className="h-11 min-w-0 rounded-[1.1rem] px-4 text-xs">
+          مستأجر
         </Button>
       </div>
     </div>
