@@ -5,9 +5,10 @@ from app.models.Base_Model import Base
 
 DATABASE_URL = os.getenv("MYSQL_URL") or os.getenv("DATABASE_URL")
 
+print(f"DEBUG: DATABASE_URL = {DATABASE_URL}")  # ← أضف هذا
+
 if DATABASE_URL and DATABASE_URL.startswith("mysql://"):
     DATABASE_URL = DATABASE_URL.replace("mysql://", "mysql+pymysql://", 1)
-
 engine = create_engine(
     DATABASE_URL,
     pool_pre_ping=True
