@@ -5,7 +5,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: mysql+pymysql://root:IbFHPrOSOcIxSqqzFhCeinyURzhAhoiU@caboose.proxy.rlwy.net:44999/railway
+      DATABASE_URL: mysql+pymysql://root:DTBXJhmDGiYotdEqBUveKKnAgzlbaQER@caboose.proxy.rlwy.net:44999/railway
     depends_on:
       db:
         condition: service_healthy
