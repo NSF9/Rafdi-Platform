@@ -8,7 +8,7 @@ export default function Button({ as: Comp = 'button', variant = 'primary', class
 
   return (
     <Comp
-      className={`inline-flex items-center justify-center rounded-2xl px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 ${styles} ${className}`}
+      className={`inline-flex items-center justify-center rounded-2xl px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-rafdi-light/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white ${styles} ${className}`}
       {...buttonProps}
     />
   )

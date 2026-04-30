@@ -17,6 +17,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  color: #0f172a;
   background:
     radial-gradient(circle at top, rgba(74, 136, 191, 0.14), transparent 35%),
     linear-gradient(180deg, #f8fbff 0%, #f9f4eb 100%);
@@ -29,4 +30,10 @@ body {
 .rafdi-metric {
   direction: ltr;
   unicode-bidi: plaintext;
+}
+
+.rafdi-dashboard-shell {
+  background:
+    radial-gradient(circle at top right, rgba(74, 136, 191, 0.12), transparent 24%),
+    linear-gradient(180deg, #f8fbff 0%, #f4efe7 100%);
 }

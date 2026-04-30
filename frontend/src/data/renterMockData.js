@@ -1,0 +1,145 @@
+import { statusValues } from '../constants/status'
+
+export const renterWarehouseCatalog = [
+  {
+    id: 'wh-ramal',
+    name: 'مستودع الرمال اللوجستي',
+    city: 'الرياض',
+    district: 'السلي',
+    sizeSqm: 1200,
+    monthlyRateSar: 12500,
+    status: statusValues.active,
+    availableFrom: '2026-05-01',
+  },
+  {
+    id: 'wh-modern',
+    name: 'مركز التخزين الحديث',
+    city: 'جدة',
+    district: 'الخمرة',
+    sizeSqm: 900,
+    monthlyRateSar: 9800,
+    status: statusValues.pendingReview,
+    availableFrom: '2026-05-15',
+  },
+  {
+    id: 'wh-gate',
+    name: 'مستودعات بوابة الشرق',
+    city: 'الدمام',
+    district: 'المدينة الصناعية الثانية',
+    sizeSqm: 1500,
+    monthlyRateSar: 18000,
+    status: statusValues.active,
+    availableFrom: '2026-06-01',
+  },
+]
+
+export const renterWarehouseDetailsById = {
+  'wh-ramal': {
+    id: 'wh-ramal',
+    name: 'مستودع الرمال اللوجستي',
+    city: 'الرياض',
+    district: 'السلي',
+    address: 'حي السلي، طريق إسطنبول، الرياض',
+    sizeSqm: 1200,
+    monthlyRateSar: 12500,
+    status: statusValues.active,
+    heroImageKey: 'warehouse-sand',
+    ownerCompanyName: 'شركة رافد الصناعية',
+    ownerContact: {
+      companyName: 'شركة رافد الصناعية',
+      fullName: 'عبدالله القحطاني',
+      email: 'abdullah@rafdi.sa',
+      phone: '+966500000002',
+    },
+    description: 'مستودع حديث مناسب للتخزين الجاف مع وصول مباشر للشاحنات ومساحات تحميل منظمة.',
+    amenities: ['منطقة تحميل', 'كاميرات مراقبة', 'وصول 24/7'],
+    contractTerms: ['حد أدنى 3 أشهر', 'تأمين شهر واحد'],
+  },
+  'wh-modern': {
+    id: 'wh-modern',
+    name: 'مركز التخزين الحديث',
+    city: 'جدة',
+    district: 'الخمرة',
+    address: 'منطقة الخمرة اللوجستية، جدة',
+    sizeSqm: 900,
+    monthlyRateSar: 9800,
+    status: statusValues.pendingReview,
+    heroImageKey: 'warehouse-modern',
+    ownerCompanyName: 'شركة المسار التجاري',
+    ownerContact: {
+      companyName: 'شركة المسار التجاري',
+      fullName: 'فهد الغامدي',
+      email: 'fahad@almasar.sa',
+      phone: '+966500000003',
+    },
+    description: 'مساحة تخزين متوسطة مناسبة للشركات التي تحتاج نقطة تشغيل في جدة.',
+    amenities: ['بوابة آلية', 'مكاتب تشغيل', 'منطقة فرز'],
+    contractTerms: ['حد أدنى 6 أشهر', 'مراجعة تشغيلية قبل التفعيل'],
+  },
+  'wh-gate': {
+    id: 'wh-gate',
+    name: 'مستودعات بوابة الشرق',
+    city: 'الدمام',
+    district: 'المدينة الصناعية الثانية',
+    address: 'المدينة الصناعية الثانية، الدمام',
+    sizeSqm: 1500,
+    monthlyRateSar: 18000,
+    status: statusValues.active,
+    heroImageKey: 'warehouse-east-gate',
+    ownerCompanyName: 'شركة رافد الصناعية',
+    ownerContact: {
+      companyName: 'شركة رافد الصناعية',
+      fullName: 'عبدالله القحطاني',
+      email: 'abdullah@rafdi.sa',
+      phone: '+966500000002',
+    },
+    description: 'مركز تخزين كبير قريب من الميناء ومناسب للتوزيع الإقليمي.',
+    amenities: ['رصيفان تحميل', 'حساسات حرارة', 'نظام دخول ذكي'],
+    contractTerms: ['حد أدنى 3 أشهر', 'خصم للحجوزات طويلة الأجل'],
+  },
+}
+
+export const renterSummaryMetrics = [
+  { id: 'activeBookings', label: 'الحجوزات الحالية', value: 2, changeLabel: 'حجز واحد بانتظار التفعيل' },
+  { id: 'paidInvoices', label: 'الدفعات المكتملة', value: 1, changeLabel: 'آخر دفعة مؤكدة هذا الأسبوع' },
+  { id: 'preferredCity', label: 'المدينة المفضلة', value: 'الرياض', changeLabel: 'أعلى نشاط بحث خلال هذا الشهر' },
+]
+
+export const renterBookings = [
+  {
+    id: 'booking-renter-01',
+    warehouseId: 'wh-ramal',
+    warehouseName: 'مستودع الرمال اللوجستي',
+    ownerCompanyName: 'شركة رافد الصناعية',
+    startDate: '2026-04-01',
+    endDate: '2026-09-30',
+    reservedSqm: 300,
+    monthlyRateSar: 12500,
+    status: statusValues.active,
+    paymentStatus: statusValues.paid,
+  },
+  {
+    id: 'booking-renter-02',
+    warehouseId: 'wh-modern',
+    warehouseName: 'مركز التخزين الحديث',
+    ownerCompanyName: 'شركة المسار التجاري',
+    startDate: '2026-05-15',
+    endDate: '2026-11-14',
+    reservedSqm: 250,
+    monthlyRateSar: 9800,
+    status: statusValues.pendingReview,
+    paymentStatus: statusValues.pendingReview,
+  },
+]
+
+export const renterCheckoutDrafts = [
+  {
+    id: 'draft-01',
+    warehouseId: 'wh-gate',
+    warehouseName: 'مستودعات بوابة الشرق',
+    requestedSqm: 450,
+    durationMonths: 6,
+    quotedMonthlyRateSar: 18000,
+    status: statusValues.pendingReview,
+  },
+]

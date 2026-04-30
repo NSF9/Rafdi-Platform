@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { appRoutes } from '../../constants/routes'
-import { heroContent, landingValueContent, warehouses } from '../../data/mockData'
+import { statusValues } from '../../constants/status'
+import { heroContent, landingValueContent } from '../../data/mockData'
+import { renterWarehouseCatalog } from '../../data/renterMockData'
 import RafdiWordmark from '../branding/RafdiWordmark'
 import Button from '../ui/Button'
 
@@ -17,6 +19,8 @@ function BrandMark() {
 }
 
 export default function HeroSection() {
+  const previewWarehouses = renterWarehouseCatalog.filter((warehouse) => warehouse.status === statusValues.active)
+
   return (
     <section className="overflow-hidden rounded-[2.75rem] bg-white shadow-soft">
       <div className="grid gap-10 p-6 md:p-8 lg:grid-cols-[1.15fr_0.85fr] lg:p-12">
@@ -79,21 +83,23 @@ export default function HeroSection() {
               </div>
 
               <div className="space-y-4">
-                {warehouses.slice(0, 3).map((warehouse) => (
+                {previewWarehouses.slice(0, 3).map((warehouse) => (
                   <article
-                    key={warehouse.name}
+                    key={warehouse.id}
                     className="rounded-[1.75rem] border border-white/15 bg-white/10 p-4 backdrop-blur-sm"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <h2 className="text-lg font-bold">{warehouse.name}</h2>
-                        <p className="mt-1 text-sm text-white/75">{warehouse.city} • {warehouse.size}</p>
+                        <p className="mt-1 text-sm text-white/75">{warehouse.city} • {warehouse.sizeSqm} م²</p>
                       </div>
                       <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white">
                         {warehouse.status}
                       </span>
                     </div>
-                    <p className="rafdi-metric mt-4 text-sm font-semibold text-white/85">{warehouse.price}</p>
+                    <p className="rafdi-metric mt-4 text-sm font-semibold text-white/85">
+                      {warehouse.monthlyRateSar.toLocaleString('en-US')} SAR
+                    </p>
                   </article>
                 ))}
               </div>

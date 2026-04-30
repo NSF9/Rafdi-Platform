@@ -5,10 +5,13 @@ import { InfoRow } from '../components/ui/InfoRow'
 import { SectionHeader } from '../components/ui/SectionHeader'
 import { StatCard } from '../components/ui/StatCard'
 import { StatusBadge } from '../components/ui/StatusBadge'
-import { dashboardShowcaseContent, warehouses } from '../data/mockData'
+import { statusValues } from '../constants/status'
+import { dashboardShowcaseContent } from '../data/mockData'
+import { renterWarehouseCatalog } from '../data/renterMockData'
 
 export default function DashboardShowcasePage() {
   const { eyebrow, title, text, summaryBar, sharedStats, sections } = dashboardShowcaseContent
+  const visibleRenterWarehouses = renterWarehouseCatalog.filter((warehouse) => warehouse.status === statusValues.active)
 
   return (
     <AppShell className="py-10 md:py-12">
@@ -135,8 +138,8 @@ export default function DashboardShowcasePage() {
           </div>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-3">
-            {warehouses.map((warehouse) => (
-              <article key={warehouse.name} className="rounded-[2rem] border border-slate-100 bg-slate-50 p-5">
+            {visibleRenterWarehouses.map((warehouse) => (
+              <article key={warehouse.id} className="rounded-[2rem] border border-slate-100 bg-slate-50 p-5">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="text-sm text-slate-500">{warehouse.city}</p>
@@ -147,11 +150,13 @@ export default function DashboardShowcasePage() {
                 <div className="mt-5 space-y-3 text-sm text-slate-600">
                   <div className="flex items-center justify-between gap-3">
                     <span>{sections.renter.labels.size}</span>
-                    <span className="font-semibold text-rafdi-dark">{warehouse.size}</span>
+                    <span className="font-semibold text-rafdi-dark">{warehouse.sizeSqm} م²</span>
                   </div>
                   <div className="flex items-center justify-between gap-3">
                     <span>{sections.renter.labels.monthlyPrice}</span>
-                    <span className="rafdi-metric font-semibold text-rafdi-primary">{warehouse.price}</span>
+                    <span className="rafdi-metric font-semibold text-rafdi-primary">
+                      {warehouse.monthlyRateSar.toLocaleString('en-US')} SAR
+                    </span>
                   </div>
                 </div>
               </article>

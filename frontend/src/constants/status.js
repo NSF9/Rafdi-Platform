@@ -7,6 +7,9 @@ export const statusValues = {
 }
 
 export const statusTones = {
+  info: 'info',
+  accent: 'accent',
+  outline: 'outline',
   success: 'success',
   warning: 'warning',
   error: 'error',
