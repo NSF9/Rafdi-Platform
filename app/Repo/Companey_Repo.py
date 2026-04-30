@@ -4,7 +4,8 @@ from sqlalchemy.orm import Session
 
 from app.Repo.Base_Repo import BaseRepo
 from app.models import Company
-from app.DTOs import RegisterCreate, CompanyUpdate
+from app.Dtos.Company_DTOs import CompanyUpdate
+from app.Dtos.Auth_DTOs import RegisterCreate
 
 
 class CompanyRepo(BaseRepo[Company]):

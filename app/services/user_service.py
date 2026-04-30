@@ -6,8 +6,8 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
  
 from app.Repo import user_repo, Companey_Repo
-from app.DTOs.User_DTOs import UserResponse, UserUpdate
-from app.DTOs.Auth_DTOs import RegisterCreate
+from app.Dtos.User_DTOs import UserResponse
+from app.Dtos.Auth_DTOs import RegisterCreate
  
  
 class UserService:

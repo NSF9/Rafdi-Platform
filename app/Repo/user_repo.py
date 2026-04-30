@@ -4,7 +4,8 @@ from sqlalchemy.orm import Session
 
 from app.Repo.Base_Repo import BaseRepo
 from app.models import User
-from app.DTOs import RegisterCreate, UserUpdate
+from app.Dtos.User_DTOs import UserUpdate
+from app.Dtos.Auth_DTOs import RegisterCreate
 
 
 class UserRepo(BaseRepo[User]):

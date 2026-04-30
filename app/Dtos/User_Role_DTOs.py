@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
-from app.DTOs.Role_DTOs import RoleResponse
+from app.Dtos.Role_DTOs import RoleResponse
 
 class UserRoleCreate(BaseModel):
     RolesID: int

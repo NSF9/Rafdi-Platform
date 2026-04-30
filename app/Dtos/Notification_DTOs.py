@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from app.Enums.EnumTypes import NotificationTypeEnum
-from app.DTOs.User_DTOs import UserResponse
+from app.Dtos.User_DTOs import UserResponse
 
 class NotificationCreate(BaseModel):
     UserID : int

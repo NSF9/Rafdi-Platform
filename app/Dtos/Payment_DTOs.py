@@ -3,7 +3,7 @@ from typing import Optional
 from decimal import Decimal
 from datetime import date
 from app.Enums.EnumTypes import PaymentStatusEnum
-from app.DTOs.Booking_DTOs import BookingResponse
+from app.Dtos.Booking_DTOs import BookingResponse
 
 class PaymentCreate(BaseModel):
     BookingID  : int

@@ -2,8 +2,8 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional
 from decimal import Decimal
 from datetime import date
-from app.DTOs.Company_DTOs import CompanyResponse
-from app.DTOs.Warehouse_DTOs import WarehouseResponse
+from app.Dtos.Company_DTOs import CompanyResponse
+from app.Dtos.Warehouse_DTOs import WarehouseResponse
 from app.Enums.EnumTypes import BookingStatusEnum
 
 class BookingCreate(BaseModel):

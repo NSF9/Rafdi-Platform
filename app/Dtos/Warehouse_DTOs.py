@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from decimal import Decimal
-from app.DTOs.Company_DTOs import CompanyResponse
+from app.Dtos.Company_DTOs import CompanyResponse
 
 class WarehouseCreate(BaseModel):
     CompanyID    : int

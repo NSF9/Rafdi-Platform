@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.DTOs.Auth_DTOs import RegisterCreate
-from app.DTOs.User_DTOs import UserResponse
+from app.Dtos.Auth_DTOs import RegisterCreate
+from app.Dtos.User_DTOs import UserResponse
 from app.Repo import UserRepo, CompanyRepo
 from app.services.user_service import UserService
 from app.config import get_db
