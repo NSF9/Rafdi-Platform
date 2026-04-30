@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import RafdiWordmark from '../branding/RafdiWordmark'
 import { footerContent } from '../../data/uiContent'
 
 export default function Footer() {
@@ -8,7 +9,7 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-2">
           <div className="space-y-4 text-right">
             <div className="flex items-center gap-2 text-rafdi-dark font-bold text-xl justify-start md:justify-end">
-              <span>{footerContent.brand}</span>
+              <RafdiWordmark className="h-12 w-[7.5rem] md:h-13 md:w-[8rem]" title={footerContent.brand} />
             </div>
             <p className="text-sm text-slate-500 max-w-md md:ml-auto md:mr-0">
               {footerContent.description}

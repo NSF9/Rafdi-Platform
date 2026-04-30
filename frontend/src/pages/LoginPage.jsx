@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { loginTabs } from '../constants/loginTabs'
 import { appRoutes } from '../constants/routes'
 import AppShell from '../components/layout/AppShell'
+import RafdiWordmark from '../components/branding/RafdiWordmark'
 import { LockIcon, MailIcon, WarehouseIcon } from '../components/ui/icons'
 import Button from '../components/ui/Button'
 import { InputField } from '../components/ui/InputField'
@@ -102,13 +103,13 @@ export default function LoginPage() {
               <div className="mx-auto mt-10 max-w-sm rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-panel">
                 <h2 className="text-xl font-bold text-rafdi-dark">{loginContent.signUpPreview.title}</h2>
                 <p className="mt-4 text-sm leading-7 text-slate-600">{loginContent.signUpPreview.text}</p>
-                  <Button
-                    type="button"
-                    className="mt-6 h-12 w-full rounded-[1.2rem] text-sm"
-                    onClick={() => navigate(appRoutes.dashboard)}
-                  >
-                    {loginContent.signUpPreview.action}
-                  </Button>
+                <Button
+                  type="button"
+                  className="mt-6 h-12 w-full rounded-[1.2rem] text-sm"
+                  onClick={() => navigate(appRoutes.dashboard)}
+                >
+                  {loginContent.signUpPreview.action}
+                </Button>
               </div>
             )}
           </div>
@@ -120,9 +121,9 @@ export default function LoginPage() {
 
         <div dir="rtl" className="order-1 bg-rafdi-primary px-6 py-8 text-white sm:px-8 lg:order-2 lg:px-10 lg:py-10">
           <div className="flex h-full flex-col">
-            <div className="flex items-start justify-between gap-4">
-              <div className="text-right">
-                <p className="text-4xl font-black tracking-tight sm:text-5xl">{loginContent.brandPanel.logoText}</p>
+            <div className="flex items-start justify-between gap-5">
+              <div className="pt-1 text-right">
+                <RafdiWordmark className="h-[5.75rem] w-[12.25rem] sm:h-24 sm:w-[12.75rem]" title={loginContent.brandPanel.logoText} variant="heroic" />
               </div>
               <BrandIcon>
                 <WarehouseIcon />

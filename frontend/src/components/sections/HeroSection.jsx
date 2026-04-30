@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { appRoutes } from '../../constants/routes'
 import { heroContent, landingValueContent, warehouses } from '../../data/mockData'
+import RafdiWordmark from '../branding/RafdiWordmark'
 import Button from '../ui/Button'
 
 function BrandMark() {
@@ -24,11 +25,13 @@ export default function HeroSection() {
             {heroContent.kicker}
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 md:gap-5">
             <BrandMark />
-            <div>
-              <p className="text-3xl font-black tracking-tight text-rafdi-dark">{heroContent.brandName}</p>
-              <p className="mt-1 text-sm font-semibold text-slate-500">{heroContent.brandMarkLabel}</p>
+            <div className="flex flex-col items-start justify-center">
+              <RafdiWordmark className="h-[4.5rem] w-[10.75rem] md:h-20 md:w-[11.75rem]" title={heroContent.brandName} />
+              <p className="-mt-1 pe-2 text-sm font-semibold tracking-[0.12em] text-slate-500 md:pe-3">
+                {heroContent.brandMarkLabel}
+              </p>
             </div>
           </div>
 
