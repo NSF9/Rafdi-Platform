@@ -33,6 +33,9 @@ class UserRoleRepo(BaseRepo[User_Role]):
         self.db.commit()
         self.db.refresh(user_role)
         return user_role
+    
+    def update(self, id: int, obj) -> Optional[User_Role]:
+        raise NotImplementedError("Update not supported")
  
     def delete(self, id: int) -> None:
         user_role = self.get_by_id(id)
