@@ -54,4 +54,6 @@ class AuthService:
         if not self.password_service.verify_password(password, user.PasswordHash):
             raise ValueError("البريد الإلكتروني أو كلمة المرور غلط")
 
-        return MessageResponse.model_validate(user)
+        return MessageResponse(
+            message="تم تسجيل الدخول بنجاح"
+        )

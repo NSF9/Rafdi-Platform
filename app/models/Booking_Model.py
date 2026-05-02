@@ -22,7 +22,6 @@ class Booking(TimestampMixin, Base):
     TotalPrice     : Mapped[DECIMAL]           = mapped_column(Numeric(10, 2))
     Status         : Mapped[BookingStatusEnum] = mapped_column(Enum(BookingStatusEnum), default=BookingStatusEnum.pending)
  
-    # Relationships
     warehouse     : Mapped["Warehouse"]     = relationship(back_populates="bookings")
     renter_company: Mapped["Company"]       = relationship(back_populates="bookings", foreign_keys=[RenterCompanyID])
     payments      : Mapped[list["Payment"]] = relationship(back_populates="booking")

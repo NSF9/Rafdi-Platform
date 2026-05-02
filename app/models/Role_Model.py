@@ -14,5 +14,4 @@ class Role(TimestampMixin, Base):
     RolesID : Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     RoleName: Mapped[str] = mapped_column(String(100), unique=True)
  
- 
     user_roles: Mapped[list["User_Role"]] = relationship(back_populates="role")

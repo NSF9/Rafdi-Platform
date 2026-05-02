@@ -18,5 +18,4 @@ class Payment(TimestampMixin, Base):
     PaymentDate: Mapped[Date]               = mapped_column(Date)
     Status     : Mapped[PaymentStatusEnum]  = mapped_column(Enum(PaymentStatusEnum), default=PaymentStatusEnum.pending)
  
-    # Relationships
     booking: Mapped["Booking"] = relationship(back_populates="payments")
