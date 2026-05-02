@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
-from app.models.Base_Model import Base
+from app.models.Base_Model import Base, TimestampMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from app.models.Role_Model import Role
     from app.models.User_Model import User
     
-class User_Role(Base):
+class User_Role(TimestampMixin, Base):
     __tablename__ = "user_roles"
  
     RolesID: Mapped[int] = mapped_column(ForeignKey("roles.RolesID"), primary_key=True)

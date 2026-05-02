@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, Optional
 
-from app.models.Base_Model import Base
+from app.models.Base_Model import Base, TimestampMixin
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from app.models.User_Role_Model import User_Role
     from app.models.Notification_Model import Notification
 
-class User(Base):
+class User(TimestampMixin, Base):
 
     __tablename__ = "users"
  
