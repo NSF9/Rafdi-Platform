@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional
 from decimal import Decimal
 from app.Dtos.Company_DTOs import CompanyResponse
@@ -36,4 +36,10 @@ class WarehouseResponse(BaseModel):
     ImagePath    : Optional[str] = None
     company      : Optional[CompanyResponse] = None
  
+    model_config = {"from_attributes": True}
+
+class WarehouseToggleResponse(BaseModel):
+    WarehouseID: int
+    IsActive   : bool
+
     model_config = {"from_attributes": True}

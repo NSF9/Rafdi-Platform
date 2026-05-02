@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional
 
 class CompanyCreate(BaseModel):
@@ -20,3 +20,6 @@ class CompanyResponse(BaseModel):
     Status                : bool
  
     model_config = {"from_attributes": True}
+
+class CompanyStatusUpdate(BaseModel):
+    Status: bool

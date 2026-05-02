@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional
 from app.Enums.EnumTypes import NotificationTypeEnum
 from app.Dtos.User_DTOs import UserResponse

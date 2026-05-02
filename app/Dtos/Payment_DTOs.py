@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional
 from decimal import Decimal
 from datetime import date
@@ -19,11 +19,12 @@ class PaymentUpdate(BaseModel):
  
  
 class PaymentResponse(BaseModel):
-    PaymentID  : int
-    BookingID  : int
-    Amount     : Decimal
-    PaymentDate: date
-    Status     : PaymentStatusEnum
-    booking    : Optional[BookingResponse] = None
- 
+    PaymentID        : int
+    BookingID        : int
+    Amount           : Decimal
+    commission_amount: Decimal
+    net_amount       : Decimal
+    PaymentDate      : date
+    Status           : PaymentStatusEnum
+
     model_config = {"from_attributes": True}

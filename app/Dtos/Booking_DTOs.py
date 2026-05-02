@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional
 from decimal import Decimal
 from datetime import date
@@ -34,3 +34,6 @@ class BookingResponse(BaseModel):
     renter_company : Optional[CompanyResponse]   = None
  
     model_config = {"from_attributes": True}
+
+class BookingStatusUpdate(BaseModel):
+    Status: BookingStatusEnum
