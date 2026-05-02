@@ -3,8 +3,10 @@ from sqlalchemy.orm import Session
 
 from app.Dtos.Auth_DTOs import RegisterCreate, LoginCreate
 from app.Dtos.User_DTOs import UserResponse
-from app.Repo import UserRepo, CompanyRepo, UserRoleRepo
-from app.Repo import Role_Repo
+from app.Repo.user_repo import UserRepo
+from app.Repo.Companey_Repo import CompanyRepo
+from app.Repo.UserRoleRepo import UserRoleRepo
+from app.Repo.Role_Repo import RoleRepo
 from app.services.auth_service import AuthService
 from app.services.password_service import PasswordService
 from app.services.validation_service import ValidationService
@@ -22,7 +24,7 @@ def get_auth_service(db: Session = Depends(get_db)) -> AuthService:
         company_repo       = company_repo,
         password_service   = PasswordService(),
         validation_service = ValidationService(user_repo, company_repo),
-        role_service       = RoleAssignmentService(UserRoleRepo(db), Role_Repo(db)),
+        role_service       = RoleAssignmentService(UserRoleRepo(db), RoleRepo(db)),
     )
 
 @router.post("/register", response_model=UserResponse)
