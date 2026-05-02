@@ -1,5 +1,6 @@
 from app.Repo import UserRepo, CompanyRepo
 from app.Dtos.User_DTOs import UserResponse
+from app.Dtos.Shared_DTOs import MessageResponse
 from app.Dtos.Auth_DTOs import RegisterCreate
 from app.services.password_service import PasswordService
 from app.services.validation_service import ValidationService
@@ -44,7 +45,7 @@ class AuthService:
             raise ValueError(str(e))
 
 
-    def login(self, email: str, password: str) -> UserResponse:
+    def login(self, email: str, password: str) -> MessageResponse:
 
         user = self.user_repo.get_by_email(email)
         if not user:

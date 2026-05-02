@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 
 from app.Dtos.Auth_DTOs import RegisterCreate, LoginCreate
 from app.Dtos.User_DTOs import UserResponse
+from app.Dtos.Shared_DTOs import MessageResponse
 from app.Repo.user_repo import UserRepo
 from app.Repo.Companey_Repo import CompanyRepo
 from app.Repo.UserRoleRepo import UserRoleRepo
@@ -37,7 +38,7 @@ def register(
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.post("/login", response_model=UserResponse)
+@router.post("/login", response_model=MessageResponse)
 def login(
     data   : LoginCreate,
     service: AuthService = Depends(get_auth_service)
