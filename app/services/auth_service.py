@@ -1,14 +1,13 @@
-from typing import Optional
-
 from app.Repo import UserRepo, CompanyRepo
-from app.Dtos.User_DTOs import UserResponse, UserUpdate
+from app.Dtos.User_DTOs import UserResponse
 from app.Dtos.Auth_DTOs import RegisterCreate
 from app.services.password_service import PasswordService
 from app.services.validation_service import ValidationService
 from app.services.role_assignment_service import RoleAssignmentService
 
 
-class UserService:
+class AuthService:
+
 
     def __init__(
         self,
@@ -24,14 +23,15 @@ class UserService:
         self.validation_service = validation_service
         self.role_service       = role_service
 
-
     def register(self, data: RegisterCreate) -> UserResponse:
         try:
             self.validation_service.validate_register(data)
 
-            company       = self.company_repo.add(data)
+            company = self.company_repo.add(data)
+
             password_hash = self.password_service.hash_password(data.password)
-            user          = self.user_repo.add(data, password_hash, company.CompanyID)
+
+            user = self.user_repo.add(data, password_hash, company.CompanyID)
 
             self.role_service.assign_role(user.UserID, data.account_type)
 
@@ -44,25 +44,13 @@ class UserService:
             raise ValueError(str(e))
 
 
-    def get_by_id(self, user_id: int) -> Optional[UserResponse]:
-        user = self.user_repo.get_by_id(user_id)
+    def login(self, email: str, password: str) -> UserResponse:
+
+        user = self.user_repo.get_by_email(email)
         if not user:
-            raise ValueError("المستخدم غير موجود")
+            raise ValueError("البريد الإلكتروني أو كلمة المرور غلط")
+
+        if not self.password_service.verify_password(password, user.PasswordHash):
+            raise ValueError("البريد الإلكتروني أو كلمة المرور غلط")
+
         return UserResponse.model_validate(user)
-
-    def get_all(self) -> list[UserResponse]:
-        return [UserResponse.model_validate(u) for u in self.user_repo.get_all()]
-
-
-    def update(self, user_id: int, data: UserUpdate) -> UserResponse:
-        user = self.user_repo.update(user_id, data)
-        if not user:
-            raise ValueError("المستخدم غير موجود")
-        return UserResponse.model_validate(user)
-
-
-    def delete(self, user_id: int) -> None:
-        user = self.user_repo.get_by_id(user_id)
-        if not user:
-            raise ValueError("المستخدم غير موجود")
-        self.user_repo.delete(user_id)

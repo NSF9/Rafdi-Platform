@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
-from app.models.Base_Model import Base
+from app.models.Base_Model import Base,TimestampMixin
 from sqlalchemy import String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from app.models.Booking_Model import Booking
     
 
-class Company(Base):
+class Company(TimestampMixin, Base):
     __tablename__ = "companies"
  
     CompanyID             : Mapped[int]  = mapped_column(primary_key=True, autoincrement=True)

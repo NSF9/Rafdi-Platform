@@ -2,30 +2,30 @@ from typing import Optional
 from sqlalchemy.orm import Session
  
 from app.Repo.Base_Repo import BaseRepo
-from app.models import Role, UserRole
+from app.models import User_Role
 from app.Dtos import UserRoleCreate
 
-class UserRoleRepo(BaseRepo[UserRole]):
+class UserRoleRepo(BaseRepo[User_Role]):
  
     def __init__(self, db: Session):
         super().__init__(db)
  
 
-    def get_by_id(self, id: int) -> Optional[UserRole]:
-        return self.db.query(UserRole).filter(UserRole.UserID == id).first()
+    def get_by_id(self, id: int) -> Optional[User_Role]:
+        return self.db.query(User_Role).filter(User_Role.UserID == id).first()
  
-    def get_all(self) -> list[UserRole]:
-        return self.db.query(UserRole).all()
+    def get_all(self) -> list[User_Role]:
+        return self.db.query(User_Role).all()
  
-    def get_by_user(self, user_id: int) -> list[UserRole]:
-        return self.db.query(UserRole).filter(UserRole.UserID == user_id).all()
+    def get_by_user(self, user_id: int) -> list[User_Role]:
+        return self.db.query(User_Role).filter(User_Role.UserID == user_id).all()
  
-    def get_by_role(self, role_id: int) -> list[UserRole]:
-        return self.db.query(UserRole).filter(UserRole.RolesID == role_id).all()
+    def get_by_role(self, role_id: int) -> list[User_Role]:
+        return self.db.query(User_Role).filter(User_Role.RolesID == role_id).all()
  
 
-    def add(self, obj: UserRoleCreate) -> UserRole:
-        user_role = UserRole(
+    def add(self, obj: UserRoleCreate) -> User_Role:
+        user_role = User_Role(
             RolesID = obj.RolesID,
             UserID  = obj.UserID,
         )
@@ -41,9 +41,9 @@ class UserRoleRepo(BaseRepo[UserRole]):
             self.db.commit()
  
     def delete_by_user_and_role(self, user_id: int, role_id: int) -> None:
-        user_role = self.db.query(UserRole).filter(
-            UserRole.UserID  == user_id,
-            UserRole.RolesID == role_id
+        user_role = self.db.query(User_Role).filter(
+            User_Role.UserID  == user_id,
+            User_Role.RolesID == role_id
         ).first()
         if user_role:
             self.db.delete(user_role)

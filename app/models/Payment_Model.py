@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
-from app.models.Base_Model import Base
+from app.models.Base_Model import Base, TimestampMixin
 from sqlalchemy import Date, Numeric, Enum, ForeignKey, DECIMAL
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.Enums.EnumTypes import PaymentStatusEnum
@@ -9,7 +9,7 @@ from app.Enums.EnumTypes import PaymentStatusEnum
 if TYPE_CHECKING:
     from app.models.Booking_Model import Booking
     
-class Payment(Base):
+class Payment(TimestampMixin, Base):
     __tablename__ = "payments"
  
     PaymentID  : Mapped[int]                = mapped_column(primary_key=True, autoincrement=True)
