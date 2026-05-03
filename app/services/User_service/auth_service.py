@@ -31,22 +31,18 @@ class AuthService:
 
     def register(self, data: RegisterCreate) -> UserResponse:
         try:
-            logger.debug(f"🔵 Register started: {data.email}")
-
             self.validation_service.validate_register(data)
-            logger.debug("✅ Validation passed")
             
             company = self.company_repo.add(data)
-            logger.debug(f"✅ Company created: {company.CompanyID}")
 
             password_hash = self.password_service.hash_password(data.password)
-            logger.debug("✅ Password hashed")
 
             user = self.user_repo.add(data, password_hash, company.CompanyID)
-            logger.debug(f"✅ User created: {user.UserID}")
 
             self.role_service.assign_role(user.UserID, data.account_type)
-            logger.debug("✅ Role assigned")
+
+            self.user_repo.db.commit()
+            logger.debug("✅ Transaction committed")
 
             return UserResponse.model_validate(user)
 
@@ -54,6 +50,7 @@ class AuthService:
             raise
         except Exception as e:
             self.user_repo.db.rollback()
+            logger.debug("❌ Transaction rolled back")
             raise ValueError(str(e))
 
 
