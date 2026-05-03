@@ -48,7 +48,6 @@ class AuthService:
         except Exception as e:
 
             self.user_repo.db.rollback()
-            logger.debug(f"❌ Rolled back: {str(e)}")
             raise ValueError(str(e))
 
 
