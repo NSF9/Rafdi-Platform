@@ -42,12 +42,13 @@ class AuthService:
             self.role_service.assign_role(user.UserID, data.account_type)
 
             self.user_repo.db.commit()
-            self.user_repo.db.rollback()
+
             return UserResponse.model_validate(user)
 
         except Exception as e:
 
             self.user_repo.db.rollback()
+            logger.debug(f"❌ Rolled back: {str(e)}")
             raise ValueError(str(e))
 
 
