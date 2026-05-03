@@ -25,31 +25,6 @@ class UserService:
         self.role_service       = role_service
 
 
-    def register(self, data: RegisterCreate) -> UserResponse:
-        try:
-            self.validation_service.validate_register(data)
-
-            company       = self.company_repo.add(data)
-            password_hash = self.password_service.hash_password(data.password)
-            user          = self.user_repo.add(data, password_hash, company.CompanyID)
-
-            if self.role_service.assign_role(user.UserID, data.account_type):
-
-
-                raise Exception("اختبار الترانزكشن")
-        
-            self.user_repo.db.commit()
-            
-            return UserResponse.model_validate(user)
-
-        except ValueError:
-            self.user_repo.db.rollback()
-            raise
-        except Exception as e:
-            self.user_repo.db.rollback()
-            raise ValueError(str(e))
-
-
     def get_by_id(self, user_id: int) -> Optional[UserResponse]:
         user = self.user_repo.get_by_id(user_id)
         if not user:
