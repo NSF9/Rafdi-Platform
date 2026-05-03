@@ -33,11 +33,19 @@ class PaymentRepo(BaseRepo[Payment]):
  
     def update(self, id: int, obj: PaymentCreate) -> Optional[Payment]:
         payment = self.get_by_id(id)
+        
         if not payment:
             return None
-        if obj.Amount     : payment.Amount      = obj.Amount
-        if obj.PaymentDate: payment.PaymentDate = obj.PaymentDate
-        if obj.Status     : payment.Status      = obj.Status
+        
+        if obj.Amount: 
+            payment.Amount = obj.Amount
+
+        if obj.PaymentDate:
+            payment.PaymentDate = obj.PaymentDate
+
+        if obj.Status: 
+            payment.Status = obj.Status
+
         self.db.commit()
         self.db.refresh(payment)
         return payment

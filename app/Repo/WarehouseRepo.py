@@ -44,13 +44,26 @@ class WarehouseRepo(BaseRepo[Warehouse]):
         if not warehouse:
             return None
         
-        if obj.Name         : warehouse.Name            = obj.Name
-        if obj.Location     : warehouse.Location        = obj.Location
-        if obj.Size         : warehouse.Size            = obj.Size
-        if obj.PricePerMonth: warehouse.PricePerMonth   = obj.PricePerMonth
-        if obj.Description  : warehouse.Description     = obj.Description
-        if obj.ImagePath    : warehouse.ImagePath       = obj.ImagePath
-        if obj.IsActive is not None: warehouse.IsActive = obj.IsActive
+        if obj.Name:
+            warehouse.Name = obj.Name
+
+        if obj.Location:
+            warehouse.Location = obj.Location
+
+        if obj.Size:
+            warehouse.Size = obj.Size
+
+        if obj.PricePerMonth: 
+            warehouse.PricePerMonth = obj.PricePerMonth
+
+        if obj.Description: 
+            warehouse.Description = obj.Description
+
+        if obj.ImagePath:
+            warehouse.ImagePath = obj.ImagePath
+
+        if obj.IsActive is not None:
+            warehouse.IsActive = obj.IsActive
 
         self.db.commit()
         self.db.refresh(warehouse)

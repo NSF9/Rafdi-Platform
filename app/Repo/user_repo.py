@@ -36,10 +36,16 @@ class UserRepo(BaseRepo[User]):
 
     def update(self, id: int, obj: UserUpdate) -> Optional[User]:
         user = self.get_by_id(id)
+
         if not user:
             return None
-        if obj.Email     : user.Email     = obj.Email
-        if obj.CompanyID : user.CompanyID = obj.CompanyID
+        
+        if obj.Email:
+            user.Email = obj.Email
+
+        if obj.CompanyID: 
+            user.CompanyID = obj.CompanyID
+            
         self.db.commit()
         self.db.refresh(user)
         return user

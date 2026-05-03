@@ -28,10 +28,13 @@ class RoleRepo(BaseRepo[Role]):
  
     def update(self, id: int, obj: RoleUpdate) -> Optional[Role]:
         role = self.get_by_id(id)
+
         if not role:
             return None
+        
         if obj.RoleName:
             role.RoleName = obj.RoleName
+            
         self.db.commit()
         self.db.refresh(role)
         return role

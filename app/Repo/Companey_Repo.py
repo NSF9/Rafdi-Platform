@@ -35,10 +35,16 @@ class CompanyRepo(BaseRepo[Company]):
 
     def update(self, id: int, obj: CompanyUpdate) -> Optional[Company]:
         company = self.get_by_id(id)
+        
         if not company:
             return None
-        if obj.Name                  : company.Name                   = obj.Name
-        if obj.CommercialRegistration: company.CommercialRegistration = obj.CommercialRegistration
+        
+        if obj.Name:
+            company.Name = obj.Name
+
+        if obj.CommercialRegistration:
+            company.CommercialRegistration = obj.CommercialRegistration
+
         self.db.commit()
         self.db.refresh(company)
         return company

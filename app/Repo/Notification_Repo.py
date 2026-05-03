@@ -38,11 +38,19 @@ class NotificationRepo(BaseRepo[Notification]):
  
     def update(self, id: int, obj: NotificationUpdate) -> Optional[Notification]:
         notification = self.get_by_id(id)
+
         if not notification:
             return None
-        if obj.IsRead  is not None: notification.IsRead   = obj.IsRead
-        if obj.Type               : notification.Type     = obj.Type
-        if obj.Message            : notification.Message  = obj.Message
+        
+        if obj.IsRead  is not None: 
+            notification.IsRead = obj.IsRead
+
+        if obj.Type: 
+            notification.Type = obj.Type
+
+        if obj.Message: 
+            notification.Message = obj.Message
+            
         self.db.commit()
         self.db.refresh(notification)
         return notification
