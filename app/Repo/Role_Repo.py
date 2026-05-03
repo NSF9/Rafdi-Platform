@@ -17,30 +17,13 @@ class RoleRepo(BaseRepo[Role]):
         return self.db.query(Role).filter(Role.RoleName == name).first()
  
     def get_all(self) -> list[Role]:
-        return self.db.query(Role).all()
+        pass
  
     def add(self, obj: RoleCreate) -> Role:
-        role = Role(RoleName=obj.RoleName)
-        self.db.add(role)
-        self.db.flush()
-        self.db.refresh(role)
-        return role
+        pass
  
     def update(self, id: int, obj: RoleUpdate) -> Optional[Role]:
-        role = self.get_by_id(id)
-
-        if not role:
-            return None
-        
-        if obj.RoleName:
-            role.RoleName = obj.RoleName
-            
-        self.db.commit()
-        self.db.refresh(role)
-        return role
+      pass
  
     def delete(self, id: int) -> None:
-        role = self.get_by_id(id)
-        if role:
-            self.db.delete(role)
-            self.db.commit()
+       pass
