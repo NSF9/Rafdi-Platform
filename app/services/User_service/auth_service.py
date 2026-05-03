@@ -39,7 +39,7 @@ class AuthService:
 
             user = self.user_repo.add(data, password_hash, company.CompanyID)
 
-            self.role_service.assign_role(user.UserID, data.account_types)
+            self.role_service.assign_roles(user.UserID, data.account_types)
 
             self.user_repo.db.commit()
 
