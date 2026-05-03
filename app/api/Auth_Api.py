@@ -8,10 +8,10 @@ from app.Repo.user_repo import UserRepo
 from app.Repo.Companey_Repo import CompanyRepo
 from app.Repo.UserRoleRepo import UserRoleRepo
 from app.Repo.Role_Repo import RoleRepo
-from app.services.auth_service import AuthService
-from app.services.password_service import PasswordService
-from app.services.validation_service import ValidationService
-from app.services.role_assignment_service import RoleAssignmentService
+from app.services.User_service.auth_service import AuthService
+from app.services.User_service.password_service import PasswordService
+from app.services.User_service.validation_service import ValidationService
+from app.services.User_service.role_assignment_service import RoleAssignmentService
 from app.config import get_db
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
