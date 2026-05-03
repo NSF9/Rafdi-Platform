@@ -12,7 +12,7 @@ class RegisterCreate(BaseModel):
 
     company_name            : str
     commercial_registration : str
-    account_type            : AccountTypeEnum
+    account_types            : list[AccountTypeEnum]
  
     email   : EmailStr
     password: str
