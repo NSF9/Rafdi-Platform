@@ -29,10 +29,10 @@ class UserRoleRepo(BaseRepo[User_Role]):
             user_role = User_Role(
             RolesID = role_id,
             UserID  = user_id,
-        )
-        self.db.add(user_role)
+            )
+            self.db.add(user_role)
         self.db.flush()
-    
+        
     def update(self, id: int, obj) -> Optional[User_Role]:
         raise NotImplementedError("Update not supported")
  
