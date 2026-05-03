@@ -3,9 +3,9 @@ from typing import Optional
 from app.Repo import UserRepo, CompanyRepo
 from app.Dtos.User_DTOs import UserResponse, UserUpdate
 from app.Dtos.Auth_DTOs import RegisterCreate
-from app.services.password_service import PasswordService
-from app.services.validation_service import ValidationService
-from app.services.role_assignment_service import RoleAssignmentService
+from app.services.User_service.password_service import PasswordService
+from app.services.User_service.validation_service import ValidationService
+from app.services.User_service.role_assignment_service import RoleAssignmentService
 
 
 class UserService:
