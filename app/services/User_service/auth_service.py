@@ -32,16 +32,11 @@ class AuthService:
     def register(self, data: RegisterCreate) -> UserResponse:
         try:
             self.validation_service.validate_register(data)
-            
-            company = self.company_repo.add(data)
 
+            company       = self.company_repo.add(data)
             password_hash = self.password_service.hash_password(data.password)
-
-            user = self.user_repo.add(data, password_hash, company.CompanyID)
-
+            user          = self.user_repo.add(data, password_hash, company.CompanyID)
             self.role_service.assign_role(user.UserID, data.account_type)
-            if company:
-                self.user_repo.db.rollback()
 
             self.user_repo.db.commit()
             logger.debug("✅ Transaction committed")
@@ -52,8 +47,8 @@ class AuthService:
             raise
         except Exception as e:
             self.user_repo.db.rollback()
-            logger.debug("❌ Transaction rolled back")
-            raise ValueError(str(e))
+            logger.debug(f"❌ Rolled back: {str(e)}")
+        raise ValueError(str(e))
 
 
     def login(self, email: str, password: str) -> MessageResponse:
