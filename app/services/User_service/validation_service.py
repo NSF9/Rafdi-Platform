@@ -10,7 +10,7 @@ class ValidationService:
 
     def validate_register(self, data: RegisterCreate) -> None:
         existing_user = self.user_repo.get_by_email(data.email)
-        if not existing_user:
+        if existing_user:
             raise ValueError("البريد الإلكتروني مستخدم مسبقاً")
 
         existing_company = self.company_repo.get_by_commercial_registration(
