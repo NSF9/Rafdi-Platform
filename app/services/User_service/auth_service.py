@@ -6,6 +6,11 @@ from app.services.User_service.password_service import PasswordService
 from app.services.User_service.validation_service import ValidationService
 from app.services.User_service.role_assignment_service import RoleAssignmentService
 
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 
 class AuthService:
 
@@ -26,15 +31,22 @@ class AuthService:
 
     def register(self, data: RegisterCreate) -> UserResponse:
         try:
-            self.validation_service.validate_register(data)
+            logger.debug(f"🔵 Register started: {data.email}")
 
+            self.validation_service.validate_register(data)
+            logger.debug("✅ Validation passed")
+            
             company = self.company_repo.add(data)
+            logger.debug(f"✅ Company created: {company.CompanyID}")
 
             password_hash = self.password_service.hash_password(data.password)
+            logger.debug("✅ Password hashed")
 
             user = self.user_repo.add(data, password_hash, company.CompanyID)
+            logger.debug(f"✅ User created: {user.UserID}")
 
             self.role_service.assign_role(user.UserID, data.account_type)
+            logger.debug("✅ Role assigned")
 
             return UserResponse.model_validate(user)
 
