@@ -12,8 +12,9 @@ if TYPE_CHECKING:
 class User_Role(TimestampMixin, Base):
     __tablename__ = "user_roles"
  
-    RolesID: Mapped[int] = mapped_column(ForeignKey("roles.RolesID"), primary_key=True)
-    UserID : Mapped[int] = mapped_column(ForeignKey("users.UserID"), primary_key=True)
- 
+    User_Roles_ID: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    RolesID      : Mapped[int] = mapped_column(ForeignKey("roles.RolesID"))
+    UserID       : Mapped[int] = mapped_column(ForeignKey("users.UserID"))
+
     role: Mapped["Role"] = relationship(back_populates="user_roles")
     user: Mapped["User"] = relationship(back_populates="user_roles")
