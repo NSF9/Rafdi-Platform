@@ -37,23 +37,17 @@ class AuthService:
 
             password_hash = self.password_service.hash_password(data.password)
 
-            if password_hash:
-                raise ValueError(-1)
-
             user = self.user_repo.add(data, password_hash, company.CompanyID)
 
             self.role_service.assign_role(user.UserID, data.account_type)
 
             self.user_repo.db.commit()
-
+            self.user_repo.db.rollback()
             return UserResponse.model_validate(user)
 
-        except ValueError:
-            raise
         except Exception as e:
 
             self.user_repo.db.rollback()
-
             raise ValueError(str(e))
 
 
