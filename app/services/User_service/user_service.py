@@ -33,11 +33,17 @@ class UserService:
             password_hash = self.password_service.hash_password(data.password)
             user          = self.user_repo.add(data, password_hash, company.CompanyID)
 
-            self.role_service.assign_role(user.UserID, data.account_type)
+            if self.role_service.assign_role(user.UserID, data.account_type):
 
+
+                raise Exception("اختبار الترانزكشن")
+        
+            self.user_repo.db.commit()
+            
             return UserResponse.model_validate(user)
 
         except ValueError:
+            self.user_repo.db.rollback()
             raise
         except Exception as e:
             self.user_repo.db.rollback()

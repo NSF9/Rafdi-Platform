@@ -29,7 +29,7 @@ class CompanyRepo(BaseRepo[Company]):
             Status                 = True
         )
         self.db.add(company)
-        self.db.commit()
+        self.db.flush()
         self.db.refresh(company)
         return company
 

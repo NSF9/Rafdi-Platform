@@ -22,7 +22,7 @@ class RoleRepo(BaseRepo[Role]):
     def add(self, obj: RoleCreate) -> Role:
         role = Role(RoleName=obj.RoleName)
         self.db.add(role)
-        self.db.commit()
+        self.db.flush()
         self.db.refresh(role)
         return role
  
