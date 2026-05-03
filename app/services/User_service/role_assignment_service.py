@@ -17,4 +17,4 @@ class RoleAssignmentService:
                 role_ids.append(role.RolesID)
                 
         if role_ids:
-            self.user_role_repo.add_many(user_id, role_ids)
+            self.user_role_repo.add(user_id, role_ids)
