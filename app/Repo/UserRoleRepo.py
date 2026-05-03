@@ -24,15 +24,14 @@ class UserRoleRepo(BaseRepo[User_Role]):
         return self.db.query(User_Role).filter(User_Role.RolesID == role_id).all()
  
 
-    def add(self, obj: UserRoleCreate) -> User_Role:
-        user_role = User_Role(
-            RolesID = obj.RolesID,
-            UserID  = obj.UserID,
+    def add_many(self, user_id: int, role_ids: list[int]) -> None:
+        for role_id in role_ids:
+            user_role = User_Role(
+            RolesID = role_id,
+            UserID  = user_id,
         )
         self.db.add(user_role)
-        self.db.commit()
-        self.db.refresh(user_role)
-        return user_role
+        self.db.flush()
     
     def update(self, id: int, obj) -> Optional[User_Role]:
         raise NotImplementedError("Update not supported")
