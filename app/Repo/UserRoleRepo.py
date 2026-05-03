@@ -24,7 +24,7 @@ class UserRoleRepo(BaseRepo[User_Role]):
         return self.db.query(User_Role).filter(User_Role.RolesID == role_id).all()
  
 
-    def add_many(self, user_id: int, role_ids: list[int]) -> None:
+    def add(self, user_id: int, role_ids: list[int]) -> None:
         for role_id in role_ids:
             user_role = User_Role(
             RolesID = role_id,
