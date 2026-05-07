@@ -1,22 +1,51 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function RegisterPage() {
   const [companyName, setCompanyName] = useState("");
   const [commercialRegistration, setCommercialRegistration] = useState("");
-  const [accountType, setAccountType] = useState("owner");
+  const [accountType, setAccountType] = useState("warehouse_owner");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!companyName || !commercialRegistration || !email || !password) {
       setError("الرجاء تعبئة جميع الحقول");
       return;
     }
 
+    setLoading(true);
     setError("");
-    alert("تم إنشاء الحساب بنجاح");
+
+    try {
+      const response = await fetch("https://www.rafdi.com/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          company_name: companyName,
+          commercial_registration: commercialRegistration,
+          account_types: [accountType],
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.detail || "حدث خطأ أثناء إنشاء الحساب");
+        return;
+      }
+
+      navigate("/login");
+    } catch (err) {
+      setError("حدث خطأ في الاتصال، حاول مرة أخرى");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,8 +80,8 @@ function RegisterPage() {
             value={accountType}
             onChange={(e) => setAccountType(e.target.value)}
           >
-            <option value="owner">مالك</option>
-            <option value="renter">مستأجر</option>
+            <option value="warehouse_owner">مالك مستودع</option>
+            <option value="warehouse_renter">مستأجر مستودع</option>
           </select>
 
           <label>البريد الإلكتروني</label>
@@ -71,8 +100,8 @@ function RegisterPage() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button className="primary-btn" onClick={handleRegister}>
-            إنشاء الحساب
+          <button className="primary-btn" onClick={handleRegister} disabled={loading}>
+            {loading ? "جاري التحميل..." : "إنشاء الحساب"}
           </button>
 
           {error && <p className="error-message">{error}</p>}
